@@ -12,13 +12,18 @@
             <h2>Отслеживание заказов</h2>
             <button id="addOrder">Добавить заявку</button>
             <div id="orderList"></div>
+            <h3>Выполненные заявки</h3>
+            <div id="completedList"></div>
         </div>
         <div class="profile">
             <h2>Профиль пользователя</h2>
             <div class="avatar" id="avatar"></div>
             <input type="text" id="nicknameInput" placeholder="Никнейм" required>
+            <div class="spacing"></div>
             <input type="text" id="organizationInput" placeholder="Организация" required>
+            <div class="spacing"></div>
             <button id="saveProfile">Сохранить профиль</button>
+            <button id="editProfile">Редактировать</button>
             <div>
                 <input type="file" id="profilePic" accept="image/*">
             </div>
@@ -31,13 +36,22 @@
             <h2>Добавить заявку</h2>
             <form id="orderForm">
                 <input type="text" id="serviceInput" placeholder="Услуга" required>
+                <div class="spacing"></div>
                 <select id="priorityInput">
                     <option value="Низкий">Низкий</option>
                     <option value="Средний">Средний</option>
                     <option value="Высокий">Высокий</option>
                 </select>
+                <div class="spacing"></div>
                 <textarea id="descriptionInput" placeholder="Описание" required></textarea>
+                <div class="spacing"></div>
                 <input type="text" id="responsibleInput" placeholder="Ответственный" required>
+                <div class="spacing"></div>
+                <select id="statusInput">
+                    <option value="Зарегистрирован">Зарегистрирован</option>
+                    <option value="Принят">Принят</option>
+                    <option value="Выполнен">Выполнен</option>
+                </select>
                 <button type="submit">Добавить заявку</button>
             </form>
         </div>

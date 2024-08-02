@@ -38,6 +38,7 @@ body {
 
 button {
     padding: 10px;
+    margin-top: 10px; /* Добавлено расстояние между кнопками и вводами */
     background-color: #5cb85c;
     color: white;
     border: none;
@@ -51,8 +52,20 @@ button:hover {
 
 .data-item {
     padding: 10px;
-    border: 1px solid #ddd;
     margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.green {
+    background-color: #dff0d8; /* Зеленый */
+}
+
+.yellow {
+    background-color: #fcf8e3; /* Желтый */
+}
+
+.red {
+    background-color: #f2dede; /* Красный */
 }
 
 .modal {
@@ -74,7 +87,7 @@ button:hover {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 400px; /* Установлена фиксированная ширина для модуля добавления заявки */
 }
 
 .close-button {
@@ -89,4 +102,8 @@ button:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.spacing {
+    height: 10px; /* расстояние между элементами формы */
 }
