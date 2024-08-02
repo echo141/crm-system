@@ -1,6 +1,11 @@
 let editingOrderId = null; // Для хранения ID редактируемой заявки
 let completedOrdersCount = 0; // Счетчик выполненных заявок
 
+function toggleMenu() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('show');
+}
+
 document.getElementById('addOrder').addEventListener('click', function() {
     document.getElementById('orderModal').style.display = "block";
     editingOrderId = null; // Сбросить редактирование
@@ -76,7 +81,7 @@ function editOrder(service, priority, description, responsible, status, orderIte
     document.getElementById('statusInput').value = status;
     document.getElementById('orderModal').style.display = "block";
     
-    editingOrderId = orderItem;
+    editingOrderId = orderItem; // Переопределение для обновления
 }
 
 function updateOrder(orderItem, service, priority, description, responsible, status) {
@@ -103,11 +108,12 @@ function completeOrder(orderItem) {
     document.getElementById('completedCountDisplayText').innerText = completedOrdersCount;
 }
 
-document.getElementById('saveProfileButton').addEventListener('click', function() {
-    document.getElementById('profileModal').style.display = "block";
-});
-
 document.getElementById('editProfileButton').addEventListener('click', function() {
+    // Заполнение полей с текущими данными профиля
+    document.getElementById('nicknameInput').value = document.getElementById('nicknameText').innerText.replace('Никнейм: ', '');
+    document.getElementById('organizationInput').value = document.getElementById('organizationText').innerText.replace('Организация: ', '');
+    document.getElementById('descriptionInput').value = document.getElementById('descriptionText').innerText.replace('Описание: ', '');
+    
     document.getElementById('profileModal').style.display = "block";
 });
 
@@ -122,6 +128,10 @@ document.getElementById('saveProfileChanges').addEventListener('click', function
         reader.onload = function(event) {
             document.getElementById('avatar').style.backgroundImage = `url(${event.target.result})`;
             document.getElementById('avatar').style.backgroundSize = 'cover';
+            
+            // Обновление фона профиля в градиенте
+            const gradientColor = event.target.result; // Получает цвет из изображения
+            document.getElementById('profile').style.background = `linear-gradient(to right, #28a745, rgba(${gradientColor}, 0.7))`; // Применяет градиент
         }
         reader.readAsDataURL(fileInput.files[0]);
     }

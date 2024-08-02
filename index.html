@@ -7,15 +7,30 @@
     <title>Дашборд - CRM-система</title>
 </head>
 <body>
+    <div class="floating-button" onclick="toggleMenu()">
+        +
+    </div>
+    <div class="dropdown-menu" id="dropdownMenu">
+        <button class="menu-btn">Магазин</button>
+        <button class="menu-btn">Коллекция</button>
+        <button class="menu-btn">Заказы</button>
+        <button class="menu-btn">Профиль</button>
+    </div>
+    
+
     <div class="container">
         <div class="orders">
             <h2>Отслеживание заказов</h2>
             <button id="addOrder">Добавить заявку</button>
-            <div id="orderList"></div>
+            <div id="orderListContainer" class="order-list-container">
+                <div id="orderList"></div>
+            </div>
             <h3>Выполненные заявки <span id="completedCount">0</span></h3>
-            <div id="completedList"></div>
+            <div id="completedListContainer" class="completed-list-container">
+                <div id="completedList"></div>
+            </div>
         </div>
-        <div class="profile">
+        <div class="profile" id="profile">
             <h2>Профиль пользователя</h2>
             <div class="avatar" id="avatar"></div>
             <div id="profileDetails">
@@ -25,7 +40,6 @@
                 <button id="editProfileButton">Редактировать профиль</button>
                 <div id="completedCountDisplay">Количество выполненных заявок: <span id="completedCountDisplayText">0</span></div>
             </div>
-            <button id="saveProfileButton">Сохранить профиль</button>
         </div>
     </div>
 
@@ -67,7 +81,7 @@
             <textarea id="descriptionInput" placeholder="Описание"></textarea>
             <div class="spacing"></div>
             <input type="file" id="profilePic" accept="image/*">
-            <button id="saveProfileChanges">Сохранить изменения</button>
+            <button id="saveProfileChanges">Сохранить профиль</button>
         </div>
     </div>
 

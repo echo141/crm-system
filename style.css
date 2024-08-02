@@ -1,9 +1,37 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #e6f2ff; /* Светлый синий фон */
     color: #333;
     display: flex;
     justify-content: center;
+}
+
+.navbar {
+    background-color: #007bff; /* Цвет фона навигационной панели */
+    padding: 10px 0; /* Отступы сверху и снизу */
+    width: 100%; /* Ширина навигационной панели на всю ширину */
+    text-align: center; /* Центрирование текста */
+    margin-bottom: 20px; /* Отступ снизу для контейнера */
+}
+
+.navbar ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.navbar li {
+    display: inline; /* Горизонтальное расположение пунктов */
+    margin: 0 15px; /* Расстояние между пунктами */
+}
+
+.navbar a {
+    color: white; /* Цвет текста ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт для ссылок */
+}
+
+.navbar a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
 }
 
 .container {
@@ -11,7 +39,7 @@ body {
     width: 80%;
     max-width: 1200px;
     margin: 20px;
-    background: white;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.6), rgba(0, 0, 255, 0.6), rgba(128, 0, 128, 0.6));
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -19,27 +47,46 @@ body {
 .orders {
     width: 60%;
     padding: 20px;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid #aaa;
+}
+
+.order-list-container {
+    border: 1px solid #007bff; /* Синяя рамка для заказов */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #cce5ff; /* Светлый синий фон для секции */
+}
+
+.completed-list-container {
+    border: 1px solid #6c757d; /* Серые рамки для выполненных заявок */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #e9ecef; /* Светлый серый фон для секции */
 }
 
 .profile {
     width: 35%;
     padding: 20px;
     text-align: center;
+    border-radius: 8px; /* Скругленные углы */
+    background: linear-gradient(to right, #2b312d, #6f42c1); /* Градиент по умолчанию до загрузки аватара */
+    color: white; /* Белый текст для контраста */
 }
 
 .avatar {
-    width: 250px; /* Увеличен размер аватара */
-    height: 250px; /* Увеличен размер аватара */
+    width: 200px; /* Увеличен размер аватара до 200px */
+    height: 200px; /* Увеличен размер аватара до 200px */
     border-radius: 50%;
-    background-color: #5cb85c; /* Цвет для аватара по умолчанию */
+    background-color: #007bff; /* Цвет для аватара по умолчанию */
     margin: 0 auto 20px;
 }
 
 button {
     padding: 10px;
     margin-top: 10px; /* Добавлено расстояние между кнопками и вводами */
-    background-color: #5cb85c;
+    background-color: #007bff; /* Синий цвет для кнопок */
     color: white;
     border: none;
     border-radius: 4px;
@@ -47,7 +94,7 @@ button {
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #0056b3; /* Темнее синий для наведения */
 }
 
 .data-item {
@@ -77,7 +124,6 @@ button:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     padding-top: 60px;
 }
@@ -106,4 +152,62 @@ button:hover {
 
 .spacing {
     height: 10px; /* расстояние между элементами формы */
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
+}
+
+.dropdown-menu {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: none; /* Скрыто по умолчанию */
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Плавный переход */
+    opacity: 0; /* Полностью прозрачная изначально */
+    transform: translateY(10px); /* Изначально немного ниже */
+}
+
+.dropdown-menu.show {
+    display: flex; /* Показать меню */
+    opacity: 1; /* Сделать его видимым */
+    transform: translateY(0); /* Вернуть на исходное место */
+}
+
+.menu-btn {
+    padding: 10px 20px;
+    margin: 5px 0;
+    background: rgba(0, 123, 255, 0.7); /* Прозрачный синий */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-btn:hover {
+    background: rgba(0, 123, 255, 1); /* Более яркий синий при наведении */
 }
