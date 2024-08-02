@@ -1,12 +1,15 @@
 let editingOrderId = null; // Для хранения ID редактируемой заявки
+let completedOrdersCount = 0; // Счетчик выполненных заявок
 
 document.getElementById('addOrder').addEventListener('click', function() {
     document.getElementById('orderModal').style.display = "block";
     editingOrderId = null; // Сбросить редактирование
 });
 
-document.querySelector('.close-button').addEventListener('click', function() {
-    document.getElementById('orderModal').style.display = "none";
+document.querySelectorAll('.close-button').forEach(button => {
+    button.addEventListener('click', function() {
+        this.closest('.modal').style.display = "none";
+    });
 });
 
 document.getElementById('orderForm').addEventListener('submit', function(event) {
@@ -84,16 +87,34 @@ function updateOrder(orderItem, service, priority, description, responsible, sta
     orderItem.querySelector('div:nth-child(5)').innerText = `Статус: ${status}`;
     orderItem.style.backgroundColor = getPriorityColor(priority);
 }
+
 function completeOrder(orderItem) {
     const completedList = document.getElementById('completedList');
     completedList.appendChild(orderItem);
     orderItem.querySelector('.edit-button').remove(); // Удаляем кнопку "Изменить заявку"
     orderItem.querySelector('.complete-button').remove(); // Удаляем кнопку "Закрыть"
+    
+    // Обновляем статус на "Выполнен"
+    orderItem.querySelector('div:nth-child(5)').innerText = `Статус: Выполнен`;
+
+    // Увеличиваем счетчик выполненных заявок
+    completedOrdersCount++;
+    document.getElementById('completedCount').innerText = completedOrdersCount;
+    document.getElementById('completedCountDisplayText').innerText = completedOrdersCount;
 }
 
-document.getElementById('saveProfile').addEventListener('click', function() {
+document.getElementById('saveProfileButton').addEventListener('click', function() {
+    document.getElementById('profileModal').style.display = "block";
+});
+
+document.getElementById('editProfileButton').addEventListener('click', function() {
+    document.getElementById('profileModal').style.display = "block";
+});
+
+document.getElementById('saveProfileChanges').addEventListener('click', function() {
     const nickname = document.getElementById('nicknameInput').value;
     const organization = document.getElementById('organizationInput').value;
+    const description = document.getElementById('descriptionInput').value;
     const fileInput = document.getElementById('profilePic');
 
     if (fileInput.files[0]) {
@@ -105,14 +126,9 @@ document.getElementById('saveProfile').addEventListener('click', function() {
         reader.readAsDataURL(fileInput.files[0]);
     }
 
-    alert(`Профиль сохранен:\nНикнейм: ${nickname}\nОрганизация: ${organization}`);
-});
-
-document.getElementById('editProfile').addEventListener('click', function() {
-    const nickname = document.getElementById('nicknameInput');
-    const organization = document.getElementById('organizationInput');
-
-    nickname.disabled = !nickname.disabled;
-    organization.disabled = !organization.disabled;
-    this.innerText = nickname.disabled ? 'Редактировать' : 'Сохранить';
+    document.getElementById('nicknameText').innerText = nickname;
+    document.getElementById('organizationText').innerText = organization;
+    document.getElementById('descriptionText').innerText = description;
+    
+    document.getElementById('profileModal').style.display = "none";
 });

@@ -29,8 +29,8 @@ body {
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
+    width: 250px; /* Увеличен размер аватара */
+    height: 250px; /* Увеличен размер аватара */
     border-radius: 50%;
     background-color: #5cb85c; /* Цвет для аватара по умолчанию */
     margin: 0 auto 20px;

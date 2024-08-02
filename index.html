@@ -12,21 +12,20 @@
             <h2>Отслеживание заказов</h2>
             <button id="addOrder">Добавить заявку</button>
             <div id="orderList"></div>
-            <h3>Выполненные заявки</h3>
+            <h3>Выполненные заявки <span id="completedCount">0</span></h3>
             <div id="completedList"></div>
         </div>
         <div class="profile">
             <h2>Профиль пользователя</h2>
             <div class="avatar" id="avatar"></div>
-            <input type="text" id="nicknameInput" placeholder="Никнейм" required>
-            <div class="spacing"></div>
-            <input type="text" id="organizationInput" placeholder="Организация" required>
-            <div class="spacing"></div>
-            <button id="saveProfile">Сохранить профиль</button>
-            <button id="editProfile">Редактировать</button>
-            <div>
-                <input type="file" id="profilePic" accept="image/*">
+            <div id="profileDetails">
+                <div id="nicknameDisplay">Никнейм: <span id="nicknameText"></span></div>
+                <div id="organizationDisplay">Организация: <span id="organizationText"></span></div>
+                <div id="profileDescription">Описание: <span id="descriptionText"></span></div>
+                <button id="editProfileButton">Редактировать профиль</button>
+                <div id="completedCountDisplay">Количество выполненных заявок: <span id="completedCountDisplayText">0</span></div>
             </div>
+            <button id="saveProfileButton">Сохранить профиль</button>
         </div>
     </div>
 
@@ -54,6 +53,21 @@
                 </select>
                 <button type="submit">Добавить заявку</button>
             </form>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Редактировать профиль</h2>
+            <input type="text" id="nicknameInput" placeholder="Никнейм" required>
+            <div class="spacing"></div>
+            <input type="text" id="organizationInput" placeholder="Организация" required>
+            <div class="spacing"></div>
+            <textarea id="descriptionInput" placeholder="Описание"></textarea>
+            <div class="spacing"></div>
+            <input type="file" id="profilePic" accept="image/*">
+            <button id="saveProfileChanges">Сохранить изменения</button>
         </div>
     </div>
 
