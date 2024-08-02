@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Простая CRM Система</title>
+    <title>CRM-system</title>
 </head>
 <body>
     <div class="container">
-        <h1>Управление данными</h1>
+        <h1>Отслеживание заявки</h1>
         <form id="dataForm">
-            <input type="text" id="dataInput" placeholder="Введите данные" required>
-            <button type="submit">Добавить</button>
+            <input type="text" id="dataInput" placeholder="Введите услугу" required>
+            <select id="priorityInput">
+                <option value="Низкий">Низкий</option>
+                <option value="Средний">Средний</option>
+                <option value="Высокий">Высокий</option>
+            </select>
+            <textarea id="descriptionInput" placeholder="Описание" required></textarea>
+            <input type="text" id="responsibleInput" placeholder="Ответственный" required>
+            <button type="submit">Добавить заявку</button>
         </form>
         <div id="dataList"></div>
     </div>
