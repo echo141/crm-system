@@ -1,60 +1,49 @@
-document.getElementById('dataForm').addEventListener('submit', function(event) {
+document.getElementById('addOrder').addEventListener('click', function() {
+    document.getElementById('orderModal').style.display = "block";
+});
+
+document.querySelector('.close-button').addEventListener('click', function() {
+    document.getElementById('orderModal').style.display = "none";
+});
+
+document.getElementById('orderForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const service = document.getElementById('dataInput').value;
+    const service = document.getElementById('serviceInput').value;
     const priority = document.getElementById('priorityInput').value;
     const description = document.getElementById('descriptionInput').value;
     const responsible = document.getElementById('responsibleInput').value;
-    addDataItem(service, priority, description, responsible);
-    document.getElementById('dataForm').reset();
+
+    addOrder(service, priority, description, responsible);
+    document.getElementById('orderForm').reset();
+    document.getElementById('orderModal').style.display = "none";
 });
 
-function addDataItem(service, priority, description, responsible) {
-    const dataList = document.getElementById('dataList');
-    const dataItem = document.createElement('div');
-    const status = "зарегистрирован";
+function addOrder(service, priority, description, responsible) {
+    const orderList = document.getElementById('orderList');
+    const orderItem = document.createElement('div');
 
-    dataItem.classList.add('data-item');
-    dataItem.innerHTML = `
-        <span>${service} - <span class="status">${status}</span></span>
+    orderItem.classList.add('data-item');
+    orderItem.innerHTML = `
+        <div>Услуга: ${service}</div>
         <div>Приоритет: ${priority}</div>
         <div>Ответственный: ${responsible}</div>
-        <div class="details">
-            <p>Описание: ${description}</p>
-            <p>Дата создания: ${new Date().toLocaleDateString()}</p>
-        </div>
-        <button class="toggle-details" onclick="toggleDetails(this)">Показать детали</button>
-        <button class="edit-button" onclick="editDataItem(this)">Редактировать статус</button>
     `;
-    dataList.appendChild(dataItem);
+    orderList.appendChild(orderItem);
 }
 
-function toggleDetails(button) {
-    const details = button.previousElementSibling;
-    details.style.display = details.style.display === 'none' || details.style.display === '' ? 'block' : 'none';
-}
+document.getElementById('saveProfile').addEventListener('click', function() {
+    const nickname = document.getElementById('nicknameInput').value;
+    const organization = document.getElementById('organizationInput').value;
+    const fileInput = document.getElementById('profilePic');
 
-function editDataItem(button) {
-    const dataItem = button.parentElement;
-    const statusElement = dataItem.querySelector('.status');
-
-    // Изменяем статус и обновляем ширину шкалы
-    const currentStatus = statusElement.innerText;
-
-    let newStatus, progressWidth;
-    if (currentStatus === "зарегистрирован") {
-        newStatus = "Принят";
-        progressWidth = "66%";
-        dataItem.querySelector('.progress-bar').style.backgroundColor = "#ffc107"; // Желтый
-    } else if (currentStatus === "Принят") {
-        newStatus = "Выполнен";
-        progressWidth = "100%";
-        dataItem.querySelector('.progress-bar').style.backgroundColor = "#5cb85c"; // Зеленый
-    } else {
-        newStatus = "зарегистрирован";
-        progressWidth = "33%";
-        dataItem.querySelector('.progress-bar').style.backgroundColor = "#dc3545"; // Красный
+    if (fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById('avatar').style.backgroundImage = `url(${event.target.result})`;
+            document.getElementById('avatar').style.backgroundSize = 'cover';
+        }
+        reader.readAsDataURL(fileInput.files[0]);
     }
 
-    statusElement.innerText = newStatus;
-    dataItem.querySelector('.progress-bar').style.width = progressWidth;
-}
+    alert(`Профиль сохранен:\nНикнейм: ${nickname}\nОрганизация: ${organization}`);
+});
